@@ -1,0 +1,4 @@
+vendor
+var
+!var/cache/phpstan/.gitkeep
+!var/cache/phpunit/.gitkeep

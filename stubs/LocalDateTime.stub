@@ -1,0 +1,13 @@
+<?php
+
+namespace Brick\DateTime;
+
+use JsonSerializable;
+
+final class LocalDateTime implements JsonSerializable
+{
+    /**
+     * @return -1|0|1
+     */
+    public function compareTo(LocalDateTime $that): int;
+}

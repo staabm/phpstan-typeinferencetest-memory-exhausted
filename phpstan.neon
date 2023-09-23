@@ -1,0 +1,28 @@
+includes:
+    - 'phpstan-extensions.neon'
+    - 'vendor/phpstan/phpstan-phpunit/extension.neon'
+    - 'vendor/phpstan/phpstan-webmozart-assert/extension.neon'
+
+parameters:
+    level: max
+    tmpDir: 'var/cache/phpstan'
+    reportUnmatchedIgnoredErrors: true
+    checkFunctionNameCase: true
+    checkMissingCallableSignature: true
+    tipsOfTheDay: false
+    checkAlwaysTrueCheckTypeFunctionCall: false # This doesn't play well with Assert::isInstanceOf()
+    checkAlwaysTrueInstanceof: true
+    checkAlwaysTrueStrictComparison: true
+    checkExplicitMixedMissingReturn: true
+    reportStaticMethodSignatures: true
+    paths:
+        - 'src'
+    ignoreErrors:
+        # Re-using PHPStan's dynamic return type extensions is at our own risk. Acknowledged.
+        -
+            message: '#is not covered by backward compatibility promise#'
+            paths:
+                - 'src/Extensions'
+    stubFiles:
+        - 'stubs/LocalDate.stub'
+        - 'stubs/LocalDateTime.stub'

@@ -1,0 +1,103 @@
+includes:
+    - 'phar://%rootDir%/phpstan.phar/conf/bleedingEdge.neon'
+
+services:
+    #
+    # Re-using PHPStan extensions for array_* shortcuts in App\Functional
+    #
+
+    # column <-> array_column
+    -
+        class: App\Extensions\FunctionalColumnDynamicReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicFunctionReturnTypeExtension
+
+    # combine <-> array_combine - this one has some custom code to deal with error handling differences
+    -
+        class: App\Extensions\FunctionalCombineDynamicReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicFunctionReturnTypeExtension
+
+    # concat <-> array_merge
+    -
+        class: App\Extensions\FunctionalConcatDynamicReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicFunctionReturnTypeExtension
+
+    # contains <-> in_array
+    -
+        class: App\Extensions\FunctionalContainsFunctionTypeSpecifyingExtension
+        tags:
+            - phpstan.typeSpecifier.functionTypeSpecifyingExtension
+
+    # fill <-> array_fill
+    -
+        class: App\Extensions\FunctionalFillDynamicReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicFunctionReturnTypeExtension
+
+    # filter <-> array_filter
+    -
+        class: App\Extensions\FunctionalFilterDynamicReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicFunctionReturnTypeExtension
+
+    # firstKey <-> array_key_first
+    -
+        class: App\Extensions\FunctionalFirstKeyDynamicReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicFunctionReturnTypeExtension
+
+    # flip <-> array_flip
+    -
+        class: App\Extensions\FunctionalFlipDynamicReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicFunctionReturnTypeExtension
+
+    # keyExists <-> array_key_exists
+    -
+        class: App\Extensions\FunctionalKeyExistsFunctionTypeSpecifyingExtension
+        tags:
+            - phpstan.typeSpecifier.functionTypeSpecifyingExtension
+
+    # keys <-> array_keys
+    -
+        class: App\Extensions\FunctionalKeysDynamicReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicFunctionReturnTypeExtension
+
+    # lastKey <-> array_key_last
+    -
+        class: App\Extensions\FunctionalLastKeyDynamicReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicFunctionReturnTypeExtension
+
+    # map <-> array_map - this one has some custom code to deal with reversed arguments positions
+    -
+        class: App\Extensions\FunctionalMapDynamicReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicFunctionReturnTypeExtension
+
+    # reduce <-> array_reduce
+    -
+        class: App\Extensions\FunctionalReduceDynamicReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicFunctionReturnTypeExtension
+
+    # reverse <-> array_reverse
+    -
+        class: App\Extensions\FunctionalReverseDynamicReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicFunctionReturnTypeExtension
+
+    # values <-> array_values
+    -
+        class: App\Extensions\FunctionalValuesDynamicReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicFunctionReturnTypeExtension
+
+    # zip <-> array_merge - this one has some custom code to add null as first argument
+    -
+        class: App\Extensions\FunctionalZipDynamicReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicFunctionReturnTypeExtension
